@@ -1,0 +1,408 @@
+.container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+    font-family: "Arial", sans-serif;
+    color: #fff;
+  }
+  
+  .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("/myimage.jpg") no-repeat center center/cover; 
+    z-index: -2;
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: -1;
+  }
+  
+  .leftSection {
+    flex: 1;
+    padding-right: 1rem;
+    z-index: 1;
+  }
+  
+  .heading {
+    font-size: 2.5rem;
+    font-weight: bold;
+    line-height: 1.3;
+  }
+  
+  .list {
+    margin-top: 1.5rem;
+    line-height: 1.8;
+    padding-left: 1.2rem;
+  }
+  
+  .button {
+    background-color: #020381;
+    color: #fff;
+    padding: 0.8rem 1.5rem;
+    margin-top: 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  .rightSection {
+    flex: 1;
+    text-align: center;
+    z-index: 1;
+  }
+  
+  .image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .chatIcon {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #020381;
+    color: #fff;
+    border-radius: 50%;
+    width: 3.5rem;
+    height: 3.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+  }
+  
+  .chatIcon span.chatText {
+    font-size: 0.6rem;
+    font-weight: bold;
+    position: absolute;
+    bottom: -1.5rem;
+    color: #020381;
+    background-color: #fff;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.5rem;
+    animation: fadeInOut 4s ease-in-out infinite;
+  }
+  
+  /* Fade-in and fade-out animation for chat icon, also to stop it */
+  @keyframes fadeInOut {
+    0%, 100% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+  
+  /* Modal Styles */
+  .modal {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    background-color: #fff;
+    width: 300px;
+    height: 400px;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    font-family: Arial, sans-serif;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  
+  .modal.open {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Modal Header */
+  .modalHeader2 {
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #020381;
+    color: #fff;
+    border-radius: 3px 3px 0 0;
+    font-size: 0.7rem;
+  }
+  
+  .modalHeader2 p {
+    margin-left: 15px;
+  }
+  
+  .modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #020381;
+    color: #fff;
+    border-radius: 3px 3px 0 0;
+  }
+  
+  .modalHeader h2 {
+    margin: 0;
+    font-size: 1.1rem;
+  }
+  
+  .closeButton {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  .modalContent {
+    padding: 1rem;
+    color: grey;
+  }
+  
+  .modalContent p {
+    font-size: 0.8rem;
+  }
+  
+  /* Avatar container */
+  .conversationAvatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+  }
+  
+  /* FontAwesome icon styling */
+  .avatarIcon {
+    font-size: 2.5rem; 
+    color: #0078d4; 
+    border: 2px solid #0078d4; 
+    border-radius: 50%; 
+    padding: 5px; 
+    background-color: #f0f8ff; 
+    transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
+  }
+  
+  .avatarIcon:hover {
+    color: #fff;
+    background-color: #0078d4; 
+    transform: scale(1.1); 
+  }
+  
+  .searchInput {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 0.7rem;
+    color: #333;
+  }
+  
+  .newConversationContainer {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 1rem;
+  }
+  
+  .newConversationButton {
+    background-color: #020381;
+    color: #fff;
+    border: none;
+    border-radius: 0.4rem;
+    padding: 0.8rem 1.5rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    display: flex;
+    transition: background-color 0.3s ease;
+  }
+  
+  .newConversationButton:hover {
+    background-color: #e55a29;
+  }
+  
+  .backButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    margin-right: 1rem;
+    color: #fff;
+  }
+
+  /* Chat content container */
+.chatContent {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+    margin-top: 0.5rem;
+    background-color: #f9f9f9; 
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+    margin-bottom: 1rem;
+  }
+  
+  /* Message container */
+  .message {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 0.8rem;
+  }
+  
+  /* Bot message styling */
+  .botMessage {
+    background-color: #020381; 
+    color: #fff; 
+    padding: 0.8rem 1.2rem;
+    border-radius: 10px;
+    font-size: 0.75rem;
+    max-width: 80%; 
+    line-height: 1.4;
+    word-wrap: break-word; 
+  }
+
+  /* Chat input container */
+.chatInputContainer {
+    position: fixed; 
+    left: 0;
+    bottom: 0;
+    width: 100%; 
+    background-color: #fff; 
+    display: flex;
+    align-items: center; 
+    padding: 1rem; 
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1); 
+    z-index: 100; 
+  }
+
+  .iconContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: absolute;
+    right: 80px;
+    z-index: 1; 
+  }
+
+  .iconButton {
+    background: none;
+    border: none;
+    color: #333;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: color 0.3s ease;
+  }
+  
+  .iconButton:hover {
+    color: #020381; 
+  }
+  
+  /* Chat input field */
+  .chatInput {
+    flex-grow: 1; /* Input takes up available space */
+    padding: 0.7rem 1rem; /* Padding for comfortable text input */
+    font-size: 0.7rem; /* Set font size for better readability */
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 10px; /* Rounded corners for the input */
+    outline: none; /* Remove default focus outline */
+    resize: none; /* Prevents resizing the textarea */
+    word-wrap: break-word; /* Ensures long words are broken to fit */
+    white-space: pre-wrap; /* Keeps the text wrapped when it exceeds the width */
+    box-sizing: border-box; /* Ensure padding doesn’t overflow the box */
+    margin-right: 1rem; /* Space between input and send button */
+    background-color: #f9f9f9; 
+    color: #333; 
+  }
+  
+  /* Focus style for input */
+  .chatInput:focus {
+    border-color: #020381; /* Change border color when input is focused */
+    background-color: #fff; /* Slightly change background on focus */
+  }
+  
+  /* Send button */
+  .sendButton {
+    background-color: #020381; /* Dark blue button background */
+    color: #fff; /* White icon color */
+    border: none; /* Remove default border */
+    border-radius: 50%; /* Circular button */
+    padding: 0.75rem; /* Add padding for button size */
+    cursor: pointer; /* Pointer cursor on hover */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease; /* Smooth transition on hover */
+  }
+  
+  .sendButton:hover {
+    background-color: #e55a29; /* Change color on hover */
+  }
+  
+  .sendButton:focus {
+    outline: none; /* Remove focus outline */
+  }
+  
+  /* FontAwesome icon inside the send button */
+  .sendButton svg {
+    font-size: 1rem; /* Set icon size */
+  }
+  
+  /* User message styling */
+.userMessage {
+  background-color: #e5e5e5; /* Light gray background for user messages */
+  color: #333; /* Dark text for contrast */
+  padding: 0.8rem 1.2rem; /* Padding for spacing */
+  border-radius: 10px; /* Rounded corners */
+  font-size: 0.75rem; /* Text size */
+  max-width: 80%; /* Prevent message from taking up too much space */
+  line-height: 1.4; /* Improve readability */
+  word-wrap: break-word; /* Ensure long words break to fit */
+  margin-left: auto; /* Push to the right */
+  text-align: left; /* Align text to the left */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Align user message in the chat container */
+.messageContainer {
+  display: flex;
+  justify-content: flex-end; /* Push user messages to the right */
+  margin-bottom: 0.8rem; /* Add spacing between messages */
+}
+
+/* Optional animation for user messages */
+@keyframes slideInRight {
+  from {
+      opacity: 0;
+      transform: translateX(20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateX(0);
+  }
+}
+
+.userMessage {
+  animation: slideInRight 0.3s ease-in-out; /* Smooth entry animation */
+}
+
+ 
+  
+  
+  
