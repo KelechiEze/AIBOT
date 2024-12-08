@@ -19,7 +19,9 @@ const Page = () => {
   const [isChatPage, setIsChatPage] = useState(false);
   const [inputText, setInputText] = useState("");
   const [isMessageVisible, setIsMessageVisible] = useState(false);
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState<
+    { role: string; content: string }[]
+  >([]);
   const [showChatText, setShowChatText] = useState(true);
 
   const handleCustomerCareClick = () => {
@@ -45,7 +47,7 @@ const Page = () => {
     setIsChatPage(false);
   };
 
-  const handleInputChange = (event) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setInputText(event.target.value);
   };
 
@@ -72,7 +74,7 @@ const Page = () => {
   };
 
   useEffect(() => {
-    const handleKeyDown = (event) => {
+    const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape" && isModalOpen) {
         closeModal();
       }
